@@ -1,0 +1,6 @@
+res://scenes/levels/level.tscn
+res://scenes/house/house.tscn
+res://scenes/objects/wall_light.tscn
+res://scenes/objects/simple_lighe.tscn
+res://scenes/projectiles/laser.tscn
+res://scenes/player/player.tscn
