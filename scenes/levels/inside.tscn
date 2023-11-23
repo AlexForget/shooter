@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfg4s43k7jh5"]
+[gd_scene load_steps=13 format=3 uid="uid://bfg4s43k7jh5"]
 
 [ext_resource type="PackedScene" uid="uid://bnhgg41djgrp3" path="res://scenes/levels/level.tscn" id="1_vjgkm"]
 [ext_resource type="TileSet" uid="uid://c3gu31sjqjcdk" path="res://scenes/levels/house.tres" id="2_2xuqb"]
+[ext_resource type="Script" path="res://scenes/levels/inside.gd" id="2_f1nrq"]
 [ext_resource type="Texture2D" uid="uid://bb7xc470ujhtm" path="res://graphics/ground/dirt.png" id="2_traup"]
+[ext_resource type="PackedScene" uid="uid://ojmdrxg6rkmw" path="res://scenes/levels/outside.tscn" id="3_1qnx6"]
 [ext_resource type="PackedScene" uid="uid://djlg4gobcqcjo" path="res://scenes/objects/name_fan_animation.tscn" id="3_qr43y"]
 [ext_resource type="PackedScene" uid="uid://bjic2vmuwk2gb" path="res://scenes/objects/wall_light.tscn" id="4_shfl2"]
 [ext_resource type="PackedScene" uid="uid://b4qdqvpcny3bw" path="res://scenes/objects/simple_lighe.tscn" id="5_lt6hp"]
@@ -14,6 +16,8 @@
 size = Vector2(734, 60)
 
 [node name="Inside" instance=ExtResource("1_vjgkm")]
+script = ExtResource("2_f1nrq")
+outside_level_scene = ExtResource("3_1qnx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground" index="0"]
 texture_repeat = 2
@@ -157,7 +161,7 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("8_p6c1s")
 
 [node name="Player" parent="." index="3"]
-position = Vector2(4352, -586)
+position = Vector2(1, 33)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player" index="9"]
 texture = ExtResource("9_y05pw")
@@ -168,10 +172,12 @@ color = Color(0.34902, 0.478431, 0.490196, 0.513726)
 energy = 2.5
 blend_mode = 1
 
-[node name="Area2D" type="Area2D" parent="." index="5"]
+[node name="ExitGateArea" type="Area2D" parent="." index="5"]
 position = Vector2(1, 237)
 collision_layer = 16
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGateArea" index="0"]
 shape = SubResource("RectangleShape2D_c5xtc")
+
+[connection signal="body_entered" from="ExitGateArea" to="." method="_on_exit_gate_area_body_entered"]
