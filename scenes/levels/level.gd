@@ -4,13 +4,14 @@ class_name LevelParent
 var laser_scene: PackedScene = preload("res://scenes/projectiles/laser.tscn")
 var grenade_scene: PackedScene = preload("res://scenes/projectiles/grenade.tscn")
 
-
+	
 func _on_player_laser_is_use(pos, player_direction):
 	var laser = laser_scene.instantiate() as Area2D
 	laser.position = pos
 	laser.rotation_degrees = rad_to_deg(player_direction.angle()) + 90
 	laser.direction = player_direction
 	$Projectile.add_child(laser)
+	$UI.update_laser_text()
 
 
 func _on_player_grenade_is_use(pos, player_direction):
@@ -18,6 +19,7 @@ func _on_player_grenade_is_use(pos, player_direction):
 	grenade.position = pos
 	grenade.linear_velocity = player_direction * grenade.speed
 	$Projectile.add_child(grenade)
+	$UI.update_grenade_amount()
 
 
 
