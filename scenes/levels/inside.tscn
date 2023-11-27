@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfg4s43k7jh5"]
+[gd_scene load_steps=14 format=3 uid="uid://bfg4s43k7jh5"]
 
 [ext_resource type="PackedScene" uid="uid://bnhgg41djgrp3" path="res://scenes/levels/level.tscn" id="1_vjgkm"]
 [ext_resource type="TileSet" uid="uid://c3gu31sjqjcdk" path="res://scenes/levels/house.tres" id="2_2xuqb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bw3uc0xfdxnp2" path="res://graphics/lights/overlays/hole.png" id="7_2voqq"]
 [ext_resource type="Texture2D" uid="uid://d0gtx2fg47pom" path="res://graphics/lights/overlays/infrastructure.png" id="8_p6c1s"]
 [ext_resource type="Texture2D" uid="uid://dmr6vr76mnuul" path="res://graphics/lights/textures/circle.png" id="9_y05pw"]
+[ext_resource type="PackedScene" uid="uid://y6r7kqew0g42" path="res://scenes/items/item.tscn" id="12_t7v2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xtc"]
 size = Vector2(734, 60)
@@ -59,6 +60,8 @@ position = Vector2(7018, -745)
 rotation = 1.5708
 
 [node name="Lights" type="Node2D" parent="." index="2"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="SimpleLighe6" parent="Lights" index="0" instance=ExtResource("5_lt6hp")]
 position = Vector2(554, -786)
@@ -79,7 +82,6 @@ rotation = 1.5708
 [node name="SimpleLighe16" parent="Lights" index="4" instance=ExtResource("5_lt6hp")]
 position = Vector2(8308, -4071)
 rotation = 1.5708
-metadata/_edit_lock_ = true
 
 [node name="SimpleLighe12" parent="Lights" index="5" instance=ExtResource("5_lt6hp")]
 position = Vector2(8292, -3136)
@@ -139,7 +141,6 @@ rotation = -3.14159
 
 [node name="WallLight" parent="Lights" index="20" instance=ExtResource("4_shfl2")]
 position = Vector2(1762, -3641)
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Lights" index="21"]
 modulate = Color(1, 1, 1, 0.184314)
@@ -171,6 +172,7 @@ texture_scale = 2.0
 color = Color(0.34902, 0.478431, 0.490196, 0.513726)
 energy = 2.5
 blend_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="ExitGateArea" type="Area2D" parent="." index="5"]
 position = Vector2(1, 237)
@@ -179,5 +181,8 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGateArea" index="0"]
 shape = SubResource("RectangleShape2D_c5xtc")
+
+[node name="Item" parent="." index="7" instance=ExtResource("12_t7v2c")]
+position = Vector2(-1166, -785)
 
 [connection signal="body_entered" from="ExitGateArea" to="." method="_on_exit_gate_area_body_entered"]

@@ -20,6 +20,3 @@ func _on_player_grenade_is_use(pos, player_direction):
 	grenade.linear_velocity = player_direction * grenade.speed
 	$Projectile.add_child(grenade)
 	$UI.update_grenade_amount()
-
-
-
