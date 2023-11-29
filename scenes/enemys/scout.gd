@@ -2,12 +2,24 @@ extends CharacterBody2D
 
 var player_nearby: bool = false
 var can_laser: bool = true
+var can_take_damage: bool = true
 var right_gun_use: bool = true
+
+var health: int = 30
 
 signal laser(pos, direction)
 
 func hit():
-	print("Scout ouch")
+	if	can_take_damage:
+		can_take_damage = false
+		$Timer/HitTimer.start()
+		health -= 10
+		print(health)
+		$Sprite2D.material.set_shader_parameter("progress", 1)
+		$Timer/SaderTimer.start()
+		
+	if health <= 0:
+		queue_free()
 
 func _process(_delta):
 	if player_nearby:
@@ -19,15 +31,20 @@ func _process(_delta):
 			var direction: Vector2 = (Globals.player_position - position).normalized()
 			laser.emit(pos, direction)
 			can_laser = false
-			$LaserCooldown.start()
+			$Timer/LaserCooldown.start()
 
 func _on_attack_area_body_entered(_body):
 	player_nearby = true
 
-
 func _on_attack_area_body_exited(_body):
 	player_nearby = false
 
-
 func _on_laser_cooldown_timeout():
 	can_laser = true
+
+func _on_hit_timer_timeout():
+	can_take_damage = true
+	$Sprite2D.material.set_shader_parameter("progress", 0)
+
+func _on_sader_timer_timeout():
+	$Sprite2D.material.set_shader_parameter("progress", 0)

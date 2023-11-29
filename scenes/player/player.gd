@@ -10,7 +10,7 @@ signal grenade_is_use(pos, direction)
 var speed: int = max_speed
 
 func hit():
-	print("Player ouch")
+	Globals.health -= 10
 
 func _process(_delta):
 	# input
