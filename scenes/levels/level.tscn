@@ -14,6 +14,8 @@ metadata/_edit_lock_ = true
 
 [node name="Projectile" type="Node2D" parent="."]
 
+[node name="Enemies" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("3_j25wk")]
 position = Vector2(2012, 1148)
 metadata/_edit_group_ = true

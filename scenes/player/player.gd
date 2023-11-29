@@ -9,13 +9,15 @@ signal grenade_is_use(pos, direction)
 @export var max_speed: int = 500
 var speed: int = max_speed
 
-
+func hit():
+	print("Player ouch")
 
 func _process(_delta):
 	# input
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * speed
 	move_and_slide()
+	Globals.player_position = global_position
 	
 	# rotate the player
 	look_at(get_global_mouse_position())

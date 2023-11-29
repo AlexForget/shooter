@@ -16,9 +16,11 @@ gradient = SubResource("Gradient_nm6wv")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_el550"]
 particle_flag_disable_z = true
 spread = 15.0
+gravity = Vector3(0, 0, 0)
 initial_velocity_min = 750.0
 initial_velocity_max = 1000.0
-gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 scale_min = 0.25
 scale_max = 0.5
 color = Color(0.12549, 1, 1, 0.184314)
@@ -27,7 +29,7 @@ color_ramp = SubResource("GradientTexture1D_e7cw8")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yxpjw"]
 polygon = PackedVector2Array(22, -59, -2, -63, -21, -60, -36, -51, -49, -42, -56, -31, -63, -14, -63, 2, -57, 12, -52, 15, -51, 22, -44, 31, -41, 41, -35, 53, -25, 58, -10, 57, 4, 56, 20, 47, 31, 43, 42, 37, 58, 40, 57, 49, 68, 52, 87, 51, 94, 51, 96, 44, 102, 42, 107, 33, 114, 37, 121, 36, 122, 31, 131, 31, 133, 9, 129, 3, 123, 8, 124, 3, 117, 1, 109, 3, 110, -5, 100, -6, 93, -8, 85, -13, 78, -9, 72, -14, 65, -21, 55, -28, 46, -28, 43, -36, 40, -45, 32, -52, 29, -60)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Entity"]]
 collision_mask = 31
 script = ExtResource("1_i1k07")
 
