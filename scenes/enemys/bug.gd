@@ -10,7 +10,7 @@ var health: int = 20
 func hit():
 	if vulnerable:
 		vulnerable = false
-		$Node/HitTimer.start()
+		$Timer/HitTimer.start()
 		health -= 10
 		$AnimatedSprite2D.material.set_shader_parameter("progress", 0.7)
 		$Particles/HitParticles.emitting = true
@@ -44,16 +44,18 @@ func _on_attack_area_body_entered(_body):
 
 func _on_attack_area_body_exited(_body):
 	player_near = false
+	$AnimatedSprite2D.play("walking")
 
 
 func _on_animated_sprite_2d_animation_finished():
 	if player_near:
 		Globals.health -= 10
-		$Node/AttackTimer.start()
+		$Timer/AttackTimer.start()
 
 
 func _on_attack_timer_timeout():
-	$AnimatedSprite2D.play("attack")
+	if player_near:
+		$AnimatedSprite2D.play("attack")
 
 
 func _on_hit_timer_timeout():

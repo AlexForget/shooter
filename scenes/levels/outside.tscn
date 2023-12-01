@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8aii72myo67" path="res://scenes/house/house.tscn" id="12_8m8f3"]
 [ext_resource type="PackedScene" uid="uid://1iiwqsvbb1qi" path="res://scenes/objects/steam_vent.tscn" id="13_mofq6"]
 [ext_resource type="PackedScene" uid="uid://6xmmlkjhw1fh" path="res://scenes/objects/gate.tscn" id="14_hbqj7"]
-[ext_resource type="PackedScene" uid="uid://dfaqaedotkf06" path="res://scenes/enemys/bug.tscn" id="16_mrhec"]
+[ext_resource type="PackedScene" uid="uid://c2ndpak76eo1m" path="res://scenes/enemys/drone.tscn" id="16_jqkqu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gye8"]
 resource_name = "walls"
@@ -309,10 +309,10 @@ position = Vector2(2021, 1660)
 position = Vector2(523, -610)
 
 [node name="Player" parent="." index="5"]
-position = Vector2(1319, 414)
+position = Vector2(-493, 1155)
 
-[node name="Bug" parent="." index="7" instance=ExtResource("16_mrhec")]
-position = Vector2(251, 1047)
+[node name="Drone" parent="." index="7" instance=ExtResource("16_jqkqu")]
+position = Vector2(-1960, 1105)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]

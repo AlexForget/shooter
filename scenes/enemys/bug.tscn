@@ -209,11 +209,11 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_1yag4")
 
-[node name="Node" type="Node" parent="."]
+[node name="Timer" type="Node" parent="."]
 
-[node name="AttackTimer" type="Timer" parent="Node"]
+[node name="AttackTimer" type="Timer" parent="Timer"]
 
-[node name="HitTimer" type="Timer" parent="Node"]
+[node name="HitTimer" type="Timer" parent="Timer"]
 wait_time = 0.2
 
 [node name="Particles" type="Node2D" parent="."]
@@ -233,5 +233,5 @@ one_shot = true
 [connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
-[connection signal="timeout" from="Node/AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="Node/HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="Timer/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timer/HitTimer" to="." method="_on_hit_timer_timeout"]
