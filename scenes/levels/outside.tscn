@@ -309,10 +309,10 @@ position = Vector2(2021, 1660)
 position = Vector2(523, -610)
 
 [node name="Player" parent="." index="5"]
-position = Vector2(553, 273)
+position = Vector2(1319, 414)
 
 [node name="Bug" parent="." index="7" instance=ExtResource("16_mrhec")]
-position = Vector2(-299, 597)
+position = Vector2(251, 1047)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]

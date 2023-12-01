@@ -6,7 +6,7 @@ var can_grenade: bool = true
 signal laser_is_use(pos, direction)
 signal grenade_is_use(pos, direction)
 
-@export var max_speed: int = 500
+@export var max_speed: int = 700
 var speed: int = max_speed
 
 func hit():

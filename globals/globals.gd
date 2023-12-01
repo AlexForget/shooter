@@ -14,6 +14,7 @@ var grenade_amount: int = 5:
 		stat_changed.emit()
 
 var player_can_take_dommage: bool = true
+
 var health: int = 60: 
 	set(value):
 		if value > health:
