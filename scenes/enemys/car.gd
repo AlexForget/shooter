@@ -15,3 +15,5 @@ func _on_notice_area_body_entered(_body):
 
 func _on_notice_area_body_exited(_body):
 	player_near = false 
+
+#test github
