@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ojmdrxg6rkmw"]
+[gd_scene load_steps=22 format=3 uid="uid://ojmdrxg6rkmw"]
 
 [ext_resource type="PackedScene" uid="uid://bnhgg41djgrp3" path="res://scenes/levels/level.tscn" id="1_jdl7y"]
 [ext_resource type="Texture2D" uid="uid://byq740qjhjryc" path="res://graphics/ground/stones.png" id="2_1ctnm"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8aii72myo67" path="res://scenes/house/house.tscn" id="12_8m8f3"]
 [ext_resource type="PackedScene" uid="uid://1iiwqsvbb1qi" path="res://scenes/objects/steam_vent.tscn" id="13_mofq6"]
 [ext_resource type="PackedScene" uid="uid://6xmmlkjhw1fh" path="res://scenes/objects/gate.tscn" id="14_hbqj7"]
-[ext_resource type="PackedScene" uid="uid://c2ndpak76eo1m" path="res://scenes/enemys/drone.tscn" id="16_jqkqu"]
+[ext_resource type="PackedScene" uid="uid://b22y22f3eu4sm" path="res://scenes/enemys/car.tscn" id="16_xqe72"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gye8"]
 resource_name = "walls"
@@ -241,15 +241,21 @@ sources/0 = SubResource("TileSetAtlasSource_8gye8")
 sources/1 = SubResource("TileSetAtlasSource_6vvlf")
 sources/2 = SubResource("TileSetAtlasSource_oyg2r")
 
+[sub_resource type="Curve2D" id="Curve2D_n3gbh"]
+_data = {
+"points": PackedVector2Array(-119.886, 225.857, 119.886, -225.857, -1730, 1665, -244.348, 16.6305, 244.348, -16.6305, -1159, 1232, 0, 0, 0, 0, -691, 1246, 0, 0, 0, 0, 92, 1227, 0, 0, 0, 0, 1121, 1177, 0, 0, 0, 0, 1910, 1148, -503.392, -119.415, 503.392, 119.415, 2509, 1175, -157.872, -127.786, 157.872, 127.786, 3088, 1482, 0, 0, 0, 0, 3366, 2070, 6.53563, -577.181, -6.53563, 577.181, 3449, 3349, 86.9598, -262.368, -86.9598, 262.368, 3347, 4236, 214.336, -279.011, -214.336, 279.011, 3094, 4857, -526.844, 26.4649, 526.844, -26.4649, 2006, 5186, 557.723, 32.4053, -557.723, -32.4053, 336, 5187, 509.407, 220.959, -509.407, -220.959, -1130, 5138, 192.547, 254.827, -192.547, -254.827, -1867, 4679, -9.90885, 270.652, 9.90885, -270.652, -2084, 3618, -48.2793, 357.624, 48.2793, -357.624, -1853, 2416, 0, 0, 0, 0, -1730, 1665)
+}
+point_count = 19
+
 [node name="Outside" instance=ExtResource("1_jdl7y")]
 script = ExtResource("2_n5fqk")
 
 [node name="Soil" type="Sprite2D" parent="Ground" index="0"]
 texture_repeat = 2
-position = Vector2(571, 1383)
+position = Vector2(461, 2544)
 texture = ExtResource("2_1ctnm")
 region_enabled = true
-region_rect = Rect2(-302.272, -1741.26, 13000, 6000)
+region_rect = Rect2(-302.272, -1741.26, 13000, 8000)
 
 [node name="Decoration" type="Sprite2D" parent="Ground" index="1"]
 modulate = Color(0.815686, 0.921569, 0.768627, 1)
@@ -309,10 +315,15 @@ position = Vector2(2021, 1660)
 position = Vector2(523, -610)
 
 [node name="Player" parent="." index="5"]
-position = Vector2(-493, 1155)
+position = Vector2(623, 555)
 
-[node name="Drone" parent="." index="7" instance=ExtResource("16_jqkqu")]
-position = Vector2(-1960, 1105)
+[node name="CarPath" type="Path2D" parent="." index="7"]
+position = Vector2(-1, 0)
+curve = SubResource("Curve2D_n3gbh")
+
+[node name="Car" parent="CarPath" index="0" instance=ExtResource("16_xqe72")]
+position = Vector2(-1730, 1665)
+rotation = -1.08281
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]

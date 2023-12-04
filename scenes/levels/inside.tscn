@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bfg4s43k7jh5"]
+[gd_scene load_steps=27 format=3 uid="uid://bfg4s43k7jh5"]
 
 [ext_resource type="PackedScene" uid="uid://bnhgg41djgrp3" path="res://scenes/levels/level.tscn" id="1_vjgkm"]
 [ext_resource type="TileSet" uid="uid://c3gu31sjqjcdk" path="res://scenes/levels/house.tres" id="2_2xuqb"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dnfpynselb3tp" path="res://graphics/objects/infestation/small_3.png" id="17_n88mh"]
 [ext_resource type="Texture2D" uid="uid://0bl8h4xtay72" path="res://graphics/objects/infestation/small_4.png" id="18_tlapi"]
 [ext_resource type="Texture2D" uid="uid://c2wyrbjsvmctx" path="res://graphics/objects/infestation/spikes.png" id="19_d5dej"]
+[ext_resource type="PackedScene" uid="uid://c2ndpak76eo1m" path="res://scenes/enemys/drone.tscn" id="25_ka75j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xtc"]
 size = Vector2(734, 60)
@@ -359,5 +360,8 @@ metadata/_edit_lock_ = true
 [node name="PointLight2D" type="PointLight2D" parent="Player" index="9"]
 texture = ExtResource("9_y05pw")
 texture_scale = 2.0
+
+[node name="Drone" parent="." index="11" instance=ExtResource("25_ka75j")]
+position = Vector2(1780, -1032)
 
 [connection signal="body_entered" from="ExitGateArea" to="." method="_on_exit_gate_area_body_entered"]
