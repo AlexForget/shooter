@@ -8,7 +8,7 @@ radius = 40.0
 height = 324.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3usrw"]
-radius = 1134.13
+radius = 2553.16
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ytqoa"]
 radius = 246.073
@@ -37,5 +37,15 @@ shape = SubResource("CircleShape2D_3usrw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_ytqoa")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="NavigationTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
+autostart = true
+
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
+[connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
