@@ -16,7 +16,7 @@ func _process(delta):
 	progress_ratio += 0.02 * delta
 	if player_near:
 		$Turret.look_at(Globals.player_position)
-	print($Turret/RayCast2D.get_collider())
+	#print($Turret/RayCast2D.get_collider())
 
 func fire():
 	Globals.health -= 20
