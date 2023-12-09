@@ -17,7 +17,7 @@ height = 324.0
 radius = 2553.16
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ytqoa"]
-radius = 246.073
+radius = 150.213
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_oljax"]
 resource_name = "Front Right Leg"
@@ -141,6 +141,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, -0.836013, 0.211185, 0.0]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y3fiw"]
 _data = {
@@ -148,7 +162,7 @@ _data = {
 "walk": SubResource("Animation_c5tht")
 }
 
-[node name="Hunter" type="CharacterBody2D"]
+[node name="Hunter" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_qxdkl")
@@ -167,8 +181,8 @@ shape = SubResource("CircleShape2D_3usrw")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-4, -266)
 shape = SubResource("CircleShape2D_ytqoa")
-metadata/_edit_lock_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
@@ -179,11 +193,16 @@ path_postprocessing = 1
 wait_time = 0.25
 autostart = true
 
+[node name="AttackTimer" type="Timer" parent="Timers"]
+
+[node name="HitTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 modification_stack = SubResource("SkeletonModificationStack2D_ey8y6")
 
 [node name="Torso" type="Bone2D" parent="Skeleton2D"]
-top_level = true
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_edit_lock_ = true
 
@@ -248,6 +267,7 @@ texture = ExtResource("5_nf0nx")
 
 [node name="RightClaw" type="Node2D" parent="Skeleton2D/Torso/Head/Sprite2D"]
 position = Vector2(16, -15)
+rotation = -0.122173
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/Head/Sprite2D/RightClaw"]
 position = Vector2(24, -45)
@@ -255,6 +275,7 @@ texture = ExtResource("6_d4h5i")
 
 [node name="LeftClaw" type="Node2D" parent="Skeleton2D/Torso/Head/Sprite2D"]
 position = Vector2(-18, -16)
+rotation = 0.211185
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/Head/Sprite2D/LeftClaw"]
 position = Vector2(-23, -45)
@@ -327,4 +348,7 @@ libraries = {
 
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="timeout" from="Timers/HitTimer" to="." method="_on_hit_timer_timeout"]
