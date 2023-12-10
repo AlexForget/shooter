@@ -364,7 +364,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-4505, 107)
 
 [node name="Player" parent="." index="5"]
-position = Vector2(-3298, -638)
+position = Vector2(1077, 579)
 
 [node name="Camera2D" parent="Player" index="8"]
 metadata/_edit_lock_ = true
