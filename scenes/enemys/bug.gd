@@ -14,6 +14,7 @@ func hit():
 		health -= 10
 		$AnimatedSprite2D.material.set_shader_parameter("progress", 0.7)
 		$Particles/HitParticles.emitting = true
+		$AudioStreamPlayer2D.play()
 	if health <= 0:
 		_on_notice_area_body_exited(self)
 		await get_tree().create_timer(0.5).timeout

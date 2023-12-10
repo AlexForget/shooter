@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2ndpak76eo1m"]
+[gd_scene load_steps=13 format=3 uid="uid://c2ndpak76eo1m"]
 
 [ext_resource type="Script" path="res://scenes/enemys/drone.gd" id="1_3h1uh"]
 [ext_resource type="Texture2D" uid="uid://coa2fxlmhdnc1" path="res://graphics/enemies/drone.png" id="1_4nhue"]
 [ext_resource type="Shader" path="res://scenes/enemys/drone.gdshader" id="2_i7use"]
 [ext_resource type="Texture2D" uid="uid://ckbxism3pgbyq" path="res://graphics/explosions/explosion_3.png" id="3_hg4ga"]
+[ext_resource type="AudioStream" uid="uid://b0p7cuytbljer" path="res://audio/explosion.wav" id="5_67dkw"]
+[ext_resource type="AudioStream" uid="uid://dtih1x64ghqnh" path="res://audio/solid_impact.ogg" id="5_w3qhu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sr214"]
 shader = ExtResource("2_i7use")
@@ -55,6 +57,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sound/ExplosionSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_67dkw")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ge0ai"]
 resource_name = "explosion"
@@ -124,6 +141,21 @@ tracks/4/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sound/ExplosionSound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_67dkw")
+}],
+"times": PackedFloat32Array(0.05)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4870g"]
 _data = {
@@ -164,6 +196,14 @@ frame = 23
 libraries = {
 "": SubResource("AnimationLibrary_4870g")
 }
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("5_w3qhu")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="Sound"]
+volume_db = 24.0
 
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
